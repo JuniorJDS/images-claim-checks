@@ -23,7 +23,15 @@ The goal of this project is to demonstrate an event-driven approach to image pro
 
 ![Event Architecture](/image-processing.png)
 
-1. The producer generates an image and uploads it to the event broker.
-2. The event broker publishes an "imagem-carregada" event.
-3. Consumers 1, 2, and 3 receive the event and retrieve the corresponding image from Amazon S3.
-4. Each consumer performs its specific task on the image asynchronously.
+1. The Client uploads the image to the system through the **image-receiver-api**;
+2. The **image-receiver-api** conducts essential validations and proceeds to store the uploaded image;
+3. The **image-receiver-api** publishes an event containing the image metadata and URL at the topic **uploaded-image**;
+4. The Aplications **gen-thumbnail**, **resize-mobile** and **resize-web** subscribe to the event **uploaded-image**;
+5. Aplications **gen-thumbnail**, **resize-mobile** and **resize-web** search for the image based on its URL;
+6. Asynchronous processing begins for each consumer:
+
+   - **gen-thumbnail** - generates a thumbnail version of the image;
+   - **resize-mobile** - resizes the image for optimal display on mobile device;
+   - **resize-web** - resizes the image for optimal display on the web.
+
+7. Each aplication uploads the resulting processed image to the designated bucket.

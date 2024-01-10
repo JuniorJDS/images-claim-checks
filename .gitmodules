@@ -1,0 +1,3 @@
+[submodule "image-receiver-api"]
+	path = image-receiver-api
+	url = https://github.com/JuniorJDS/image-receiver-api

@@ -1,3 +1,6 @@
 [submodule "image-receiver-api"]
 	path = image-receiver-api
 	url = https://github.com/JuniorJDS/image-receiver-api
+[submodule "thumbnail-generator-worker"]
+	path = thumbnail-generator-worker
+	url = https://github.com/JuniorJDS/thumbnail-generator-worker
